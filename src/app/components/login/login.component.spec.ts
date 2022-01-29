@@ -1,4 +1,10 @@
+import { CommonModule } from '@angular/common';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UiModule } from 'src/app/modules/ui.module';
 
 import { LoginComponent } from './login.component';
 
@@ -8,7 +14,16 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      imports: [
+        CommonModule,
+        HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        UiModule,
+        RouterTestingModule
+      ],
+      declarations: [ LoginComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
@@ -21,5 +36,10 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    component.loginForm = new FormGroup({
+      userName: new FormControl('test'),
+      password: new FormControl('test')
+    });
+    component.onSubmit();
   });
 });
