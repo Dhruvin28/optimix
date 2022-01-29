@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
-import { map } from 'rxjs/operators'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -26,16 +26,16 @@ export class AuthGuard implements CanActivate {
                 this.router.navigate(['login']);
                 return response;
             }
-            
+
         }));
     }
-    getValidateToken() {
-        return this.http.post(environment.api + 'validateToken', '', this.getHeaders());;
+    getValidateToken(): any {
+        return this.http.post(environment.api + 'validateToken', '', this.getHeaders());
     }
-    getHeaders() {
+    getHeaders(): any {
         return {
             headers: new HttpHeaders({
-                'Authorization': 'Bearer ' + localStorage.getItem('jwtToken')
+                Authorization: 'Bearer ' + localStorage.getItem('jwtToken')
             })
         };
     }
