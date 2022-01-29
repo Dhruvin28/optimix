@@ -19,20 +19,20 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly loginService: LoginService,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
   }
-  async onSubmit() {
+  async onSubmit(): Promise<void> {
     const formValue = this.loginForm.value;
     const loginModule = {
       userName: formValue.userName,
-      password:  Md5.hashStr(formValue.password)
+      password: Md5.hashStr(formValue.password)
     } as LoginModule;
-   
+
     this.loginService.checkLogin(loginModule).subscribe(r => {
-      const result = r as {token: string;valid: boolean};
+      const result = r as { token: string; valid: boolean; };
       if (result.valid) {
         sessionStorage.setItem('loggedIn', 'true');
         localStorage.setItem('jwtToken', result.token);
@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  openSnackBar() {
-    this._snackBar.openFromComponent(SnackComponent, {
+  openSnackBar(): void {
+    this.snackBar.openFromComponent(SnackComponent, {
       duration: 2000,
     });
   }
@@ -64,4 +64,4 @@ export class LoginComponent implements OnInit {
   `,
   ],
 })
-export class SnackComponent {}
+export class SnackComponent { }
