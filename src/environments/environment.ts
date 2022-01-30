@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:55832/'
+  api: 'https://optimixapi.azurewebsites.net/'
 };
 
 /*
