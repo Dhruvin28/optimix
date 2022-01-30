@@ -24,7 +24,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
+          npm run build --prod --if-present
           npm run test --if-present
       
       - name: Upload artifact for deployment job
@@ -53,4 +53,4 @@ jobs:
           app-name: 'optimix-web'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FDE5AC83AC264E26B9A8F52CF6FD6B2A }}
-          package: .
+          package: ./dist
