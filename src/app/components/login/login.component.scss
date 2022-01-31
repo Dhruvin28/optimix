@@ -1,6 +1,72 @@
 .main-div {
-    padding: 10% 43%;
+    background: rgba(0, 0, 0, 0.04) url(../../../assets/images/login-bg.png) top left repeat;
+    background-size: cover;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    opacity: 1;
+    z-index: 999;
+    min-height: 100vh;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
 }
-.label-margin {
-    margin-right: 2%
+.login-form {
+    padding: 60px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 35px rgb(0 0 0 / 10%);
+    margin-bottom: 20px;
+    @media (min-width: 992px) {
+        margin: 0% 30%;
+    }
+    @media (max-width: 992px) {
+        margin: 0% 10%;
+    }
+}
+.login-text {
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    color: #313131;
+    text-align: center;
+}
+input {
+    font-size: 16px;
+    outline: none;
+    background: transparent!important;
+    color: #616161;
+    font-weight: 500;
+    border-radius: 0;
+    border: none;
+    border-bottom: solid 2px #bdbdbd;
+    width: 100%;
+}
+.input-div {
+    width: 100%;
+}
+.example-full-width {
+    width: 100%;
+}
+.login-btn {
+    background: #0f96f9;
+    border: none;
+    color: #fff;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    cursor: pointer;
+    padding: 12px 50px 11px 50px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    border-radius: 3px;
+}
+.img-width {
+    @media (min-width: 992px) {
+        width: 10%;
+    }
+    @media (max-width: 992px) {
+        width: 30%;
+    }
 }
