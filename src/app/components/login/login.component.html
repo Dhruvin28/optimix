@@ -1,21 +1,21 @@
 <div class="main-div">
-    <h1>OptiMix</h1>
-  <h1>login</h1>
+    <img src="../../../assets/images/logo.png" class="img-width"/>
     <form [formGroup]="loginForm">
-        <div fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="space-around none">
-            <div fxFlex="20%" fxLayout="row" fxLayoutGap="30px">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label class="label-margin">User Name: </mat-label>
-                    <input matInput placeholder="User Name" formControlName="userName" required>
-                </mat-form-field>
+        <div fxLayout="column" fxLayoutGap="75px" fxLayoutAlign="center center" class="login-form">
+            <span class="login-text" >Login into your account</span>
+            <div fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="center center" style="width: 100%;">
+                <div fxFlex="20%" fxLayout="row" fxLayoutGap="30px" class="input-div">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput placeholder="User Name" formControlName="userName" required>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="20%" fxLayout="row" fxLayoutGap="30px" class="input-div">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <input matInput placeholder="Password" type="password" formControlName="password" required>
+                    </mat-form-field>
+                </div>
             </div>
-            <div fxFlex="20%" fxLayout="row" fxLayoutGap="30px">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label class="label-margin">Password:</mat-label>
-                    <input matInput placeholder="Password" type="password" formControlName="password" required>
-                </mat-form-field>
-            </div>
-            <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
+            <button class="login-btn" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
         </div>
     </form>
 </div>
