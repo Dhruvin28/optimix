@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     userName: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
+  isLoading = false;
   constructor(
     private readonly router: Router,
     private readonly loginService: LoginService,
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   async onSubmit(): Promise<void> {
+    this.isLoading = true;
     const formValue = this.loginForm.value;
     const loginModule = {
       userName: formValue.userName,
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['dashboard']);
       }
       else {
+        this.isLoading = false;
         this.openSnackBar();
       }
     });
