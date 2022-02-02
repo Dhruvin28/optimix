@@ -38,3 +38,44 @@
         width: 30%;
     }
 }
+a {
+    color: black !important;
+}
+.logout {
+    cursor: pointer;
+}
+span {
+    padding: 1rem;
+}
+example-list {
+    width: 100px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .example-list > li {
+    list-style-type: none;
+    padding: 8px 0;
+    margin: 0 2rem;
+  }
+  
+  .example-list > li:last-child {
+    border-bottom: none;
+  }
+  .avatar-img {
+      border-radius: 50%;
+      width: 50px;
+  }
+  .nav-item-align {
+      align-items: center;
+  }
+  .example-list {
+      background: lightyellow !important;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 0rem;
+  }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,9 @@ export class AppComponent implements OnInit {
   title = 'optimix';
   isLogin = true;
 
-  constructor(private readonly activatedRoute: ActivatedRoute) {
+  constructor(readonly userService: UserService) {
 
   }
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(r => {
-
-      if (window.location.href.includes('login')) {
-        this.isLogin = true;
-      }
-      else {
-        this.isLogin = false;
-      }
-    });
   }
 }

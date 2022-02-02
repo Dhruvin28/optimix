@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { RoutingConstants } from 'src/app/constants/routing.constants';
 import { LoginModule, LoginService } from 'src/app/services/login.service';
 import { Md5 } from 'ts-md5';
 
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
       if (result.valid) {
         sessionStorage.setItem('loggedIn', 'true');
         localStorage.setItem('jwtToken', result.token);
-        this.router.navigate(['dashboard']);
+        this.router.navigate([RoutingConstants.dashBoard]);
       }
       else {
         this.isLoading = false;

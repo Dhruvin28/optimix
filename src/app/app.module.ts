@@ -11,7 +11,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
-
+import { MatMenuModule } from '@angular/material/menu';
+import {OverlayModule} from '@angular/cdk/overlay';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,9 @@ import { HeaderComponent } from './components/header/header.component';
     ReactiveFormsModule,
     UiModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatMenuModule,
+    OverlayModule
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
