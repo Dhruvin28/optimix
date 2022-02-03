@@ -37,5 +37,8 @@ export class HeaderComponent implements OnInit {
   closePopup() {
     this.dialogRef.close();
   }
+  onMetalRegisterClick() {
+    this.router.navigate([RoutingConstants.metalRegister]);
+  }
 
 }
