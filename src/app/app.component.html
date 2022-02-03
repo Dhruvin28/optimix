@@ -1,2 +1,9 @@
-<app-header *ngIf="!userService.isLoginScreen()"></app-header>
-<router-outlet></router-outlet>
+<div fxLayout="column" fxFlex="0 1" *ngIf="!userService.isLoginScreen() else login">
+    <app-header></app-header>
+    <div class="main-div">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<ng-template #login>
+    <router-outlet></router-outlet>
+</ng-template>

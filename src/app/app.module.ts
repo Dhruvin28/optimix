@@ -13,12 +13,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { MatMenuModule } from '@angular/material/menu';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { MetalRegisterComponent } from './components/metal-register/metal-register.component';
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    MetalRegisterComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +40,12 @@ import {OverlayModule} from '@angular/cdk/overlay';
     HttpClientModule,
     FlexLayoutModule,
     MatMenuModule,
-    OverlayModule
+    OverlayModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatAutocompleteModule,
+    MatRadioModule
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
