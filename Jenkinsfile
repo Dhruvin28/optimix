@@ -1,14 +1,23 @@
+
 pipeline {
   agent any
+    
+  tools {nodejs "node"}
+    
   stages {
-    stage('Test') {
-      agent {
-        docker { image 'node:latest' }
-      }
+        
+    stage('Git') {
       steps {
-        sh 'npm i'
-        sh 'npm run build'
+        git 'https://github.com/Dhruvin28/optimix.git'
       }
     }
+     
+    stage('Build') {
+      steps {
+        sh 'npm install'
+         sh 'npm run build'
+      }
+    }  
+
   }
 }
