@@ -24,4 +24,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-call ellipsis infotech for more ingormation
+call ellipsis infotech for more information
