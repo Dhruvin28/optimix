@@ -22,8 +22,8 @@
 
 
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('../../../assets/images/bg-01.jpg');">
-        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" *ngIf="!isLoading">
+    <div class="container-login100"  *ngIf="!isLoading" style="background-image: url('../../../assets/images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
             <form [formGroup]="loginForm" class="login100-form validate-form">
                 <span class="login100-form-title p-b-49">
                     <img src="../../../assets/images/logo.png" class="img-width"/>
@@ -75,6 +75,7 @@
                 </div>
             </form>
         </div>
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        
     </div>
+    <mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
 </div>

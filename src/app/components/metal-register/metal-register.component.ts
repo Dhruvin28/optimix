@@ -45,6 +45,10 @@ export class MetalRegisterComponent implements OnInit {
   private readonly defaultConfig: MatDialogConfig = {
     hasBackdrop: true,
     disableClose: true,
+  };
+  private readonly configForPropertyModal: MatDialogConfig = {
+    hasBackdrop: true,
+    disableClose: true,
     width: "100%"
   };
   private dialogRef?: MatDialogRef<any>;
@@ -105,7 +109,7 @@ export class MetalRegisterComponent implements OnInit {
     this.dialogRefForDelete.close();
   }
   openPropertyDialog() {
-    this.dialogRefForProperty = this.dialog.open(this.modalTemplateProperty, this.defaultConfig);
+    this.dialogRefForProperty = this.dialog.open(this.modalTemplateProperty, this.configForPropertyModal);
 
     this.dialogRefForProperty.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

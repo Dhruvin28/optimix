@@ -1,0 +1,135 @@
+<h1>Metal Master</h1>
+<hr>
+<form class="form-width" [formGroup]="metalMasterForm">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50%" fxLayoutGap="20px">
+            <div>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Derived From</mat-label>
+                    <input formControlName="derivedFrom" type="text" matInput [matAutocomplete]="auto"
+                        (keyup)="onKeyUpForDerived()" (focusout)="onFocusOutEventForDerived()">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptionsForDerived" [value]="option.metalName">
+                            {{option.metalName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Metal Group</mat-label>
+                    <input formControlName="metalGroup" type="text" matInput [matAutocomplete]="autoGropu"
+                        (keyup)="onKeyUpForMetalGroup()" (focusout)="onFocusOutEventForMetalGroup()">
+                    <mat-autocomplete autoActiveFirstOption #autoGropu="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptionsForMetalGroup" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50%" fxLayoutGap="20px">
+            <div>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Metal Name</mat-label>
+                    <input formControlName="metalName" type="text" matInput>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Grade Standard</mat-label>
+                    <input formControlName="gradeStandard" type="text" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxFlex="30%">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h1>Final Chemistry</h1>
+            <button type="button" class="btn btn-primary" (click)="openDialog()">Add Elements</button>
+        </div>
+        
+        <table mat-table style="margin-bottom: 10px;width: 100%;" [dataSource]="dataSourceForFinalChem"
+            class="mat-elevation-z8 data-table">
+            <ng-container matColumnDef="element">
+                <th mat-header-cell *matHeaderCellDef> Element </th>
+                <td mat-cell *matCellDef="let element;let i = index"> {{element.element}} </td>
+            </ng-container>
+            <ng-container matColumnDef="min">
+                <th mat-header-cell *matHeaderCellDef> Min </th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                    <input type="number" matInput (focusout)="checkNegative(element.min)" [(ngModel)]="element.min"></td>
+            </ng-container>
+            <ng-container matColumnDef="max">
+                <th mat-header-cell *matHeaderCellDef> Max </th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                    <input type="number" matInput (focusout)="checkNegative(element.min)" [(ngModel)]="element.max">
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsForFinalChem"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsForFinalChem;"></tr>
+        </table>
+
+    </div>
+    <div fxFlex="30%">
+        <h1>Bath Chemistry</h1>
+        <table mat-table style="margin-bottom: 10px;width: 100%;" [dataSource]="dataSourceForBathChem"
+            class="mat-elevation-z8 data-table">
+            <ng-container matColumnDef="element">
+                <th mat-header-cell *matHeaderCellDef> Element </th>
+                <td mat-cell *matCellDef="let element;let i = index"> {{element.element}} </td>
+            </ng-container>
+            <ng-container matColumnDef="min">
+                <th mat-header-cell *matHeaderCellDef> Min </th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                    <input type="number" matInput (focusout)="checkNegative(element.min)" [(ngModel)]="element.min">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="max">
+                <th mat-header-cell *matHeaderCellDef> Max </th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                    <input type="number" matInput (focusout)="checkNegative(element.min)" [(ngModel)]="element.max">
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsForBathChem"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsForBathChem;"></tr>
+        </table>
+
+    </div>
+    <div fxFlex="30%">
+        <h1>Target Reading</h1>
+        <table mat-table style="margin-bottom: 10px;width: 100%;" [dataSource]="dataSourceForTargetChem"
+            class="mat-elevation-z8 data-table">
+            <ng-container matColumnDef="element">
+                <th mat-header-cell *matHeaderCellDef> Element </th>
+                <td mat-cell *matCellDef="let element;let i = index"> {{element.element}} </td>
+            </ng-container>
+            <ng-container matColumnDef="target">
+                <th mat-header-cell *matHeaderCellDef> Target </th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                    <input type="number" matInput (focusout)="checkNegative(element.min)" [(ngModel)]="element.target">
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsForTargetChem"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsForTargetChem;"></tr>
+        </table>
+
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <button type="button" class="btn btn-primary" (click)="onSave()">Save</button>
+</div>
+<ng-template #modal>
+    <h2 mat-dialog-title>Add Elemets</h2>
+    <mat-dialog-content class="mat-typography">
+        <app-element-master [allElements]="allElements" (emitSelectedElements)="onAdd($event)"></app-element-master>
+    </mat-dialog-content>
+</ng-template>

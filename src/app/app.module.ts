@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from './modules/ui.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { MatMenuModule } from '@angular/material/menu';
 import {OverlayModule} from '@angular/cdk/overlay';
@@ -20,6 +20,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
+import { MetalMasterComponent } from './components/metal-master/metal-master.component';
+import { ElementMasterComponent } from './components/element-master/element-master.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import {MatRadioModule} from '@angular/material/radio';
     DashboardComponent,
     HeaderComponent,
     MetalRegisterComponent,
-    DataTableComponent
+    DataTableComponent,
+    MetalMasterComponent,
+    ElementMasterComponent
   ],
   imports: [
     BrowserModule,
