@@ -130,6 +130,15 @@
 <ng-template #modal>
     <h2 mat-dialog-title>Add Elemets</h2>
     <mat-dialog-content class="mat-typography">
-        <app-element-master [allElements]="allElements" (emitSelectedElements)="onAdd($event)"></app-element-master>
+        <app-element-master [allElements]="allElements" (emitSelectedElements)="onCloseDialog($event)"></app-element-master>
     </mat-dialog-content>
+</ng-template>
+<ng-template #modalInsertSuccess>
+    <h2 mat-dialog-title>Data inserted successfully.</h2>
+    <mat-dialog-content class="mat-typography">
+    </mat-dialog-content>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <button type="button" class="btn btn-primary" (click)="closeInsertPopup()">Ok</button>
+    </div>
+
 </ng-template>

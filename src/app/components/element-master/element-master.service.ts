@@ -16,7 +16,7 @@ export class ElementMasterService {
 }
 
 export interface Element {
-    rowNo: number;
+    rowNo?: number;
     elementId: number;
     elementName: string;
     isChecked?: boolean;

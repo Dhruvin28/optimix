@@ -1,0 +1,6 @@
+projectKey=OptiMix
+serverUrl=http://localhost:9000
+serverVersion=9.3.0.51899
+dashboardUrl=http://localhost:9000/dashboard?id=OptiMix
+ceTaskId=AX93-MGu_wJ-hxq9fleS
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX93-MGu_wJ-hxq9fleS
