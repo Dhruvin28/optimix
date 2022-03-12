@@ -40,5 +40,8 @@ export class HeaderComponent implements OnInit {
   onMetalRegisterClick() {
     this.router.navigate([RoutingConstants.metalRegister]);
   }
+  onMetalMasterClick() {
+    this.router.navigate([RoutingConstants.metalMaster]);
+  }
 
 }

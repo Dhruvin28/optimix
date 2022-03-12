@@ -1,0 +1,9 @@
+<div fxLayout="row wwrap">
+    <div *ngFor="let element of allElements" style="margin-bottom: 30px;" fxLayout = "row" fxLayoutGap="5px">
+        <input class="checkbox-custom" type="checkbox" name="{{element.elementName}}" [(ngModel)]="element.isChecked">
+        <span>{{element.elementName}}</span>
+        <!-- <label for="{{element.elementName}}" class="checkbox-custom-label">{{element.elementName}}</label> -->
+    </div>
+</div>
+<button type="button" class="btn btn-primary" (click)="onAdd()">Add</button>
+<button type="button" class="btn btn-primary" (click)="onElementClose()">Close</button>
