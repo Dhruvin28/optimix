@@ -1,4 +1,4 @@
-<div fxLayout="column" fxFlex="0 1" *ngIf="!userService.isLoginScreen() else login">
+<div fxLayout="column" *ngIf="!userService.isLoginScreen() else login">
     <app-header></app-header>
     <div class="main-div">
         <router-outlet></router-outlet>

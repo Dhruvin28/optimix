@@ -2,10 +2,12 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogConfig, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { RoutingConstants } from 'src/app/constants/routing.constants';
 import { ElementMasterService, Element } from '../element-master/element-master.service';
-import { FinalChem, MetalMasterService } from './metal-master.service';
+import { FinalChem, InsertMetalMaster, MetalGradeProperty, MetalMasterService } from './metal-master.service';
 const USER_SCHEMA = {
   "min": "text",
   "max": "text",
@@ -42,17 +44,20 @@ export class MetalMasterComponent implements OnInit {
   targetChem: FinalChem[] = [];
   @ViewChild('modal', { static: true }) private modalTemplate: TemplateRef<any>;
   allElements: Element[] = [];
+  @ViewChild('modalInsertSuccess', { static: true }) private modalInsertSuccess: TemplateRef<any>;
   private readonly defaultConfig: MatDialogConfig = {
     hasBackdrop: true,
     disableClose: true,
     width: "30%"
   };
   private dialogRef?: MatDialogRef<any>;
+
   dataSchema = USER_SCHEMA;
   constructor(
     private readonly metalMasterService: MetalMasterService,
     private readonly elementMasterService: ElementMasterService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -80,6 +85,28 @@ export class MetalMasterComponent implements OnInit {
     this.dataSourceForTargetChem = new MatTableDataSource(this.targetChem);
   }
   onFocusOutEventForDerived() {
+    if (this.metalMasterForm.value.derivedFrom) {
+      this.metalMasterService.getMetalInfoFromMetal(this.metalMasterForm.value.derivedFrom).then((r: InsertMetalMaster) => {
+        this.metalMasterForm.controls['metalName'].setValue(r.metalName);
+        this.metalMasterForm.controls['metalGroup'].setValue(r.metalType);
+        this.metalMasterForm.controls['gradeStandard'].setValue(r.gradeStandard);
+        const selectedElements: Element[] = [];
+        r.metalGradeProperty.forEach((d: MetalGradeProperty) => {
+          selectedElements.push({
+            elementId: d.elementId,
+            elementName: d.elementName,
+            min: d.min,
+            max: d.max,
+            bathMin: d.bathMin,
+            bathMax: d.bathMax,
+            targetReading: d.targetReading,
+            isChecked: true
+          });
+        });
+        this.onAdd(selectedElements);
+      });
+    }
+   
     // this.dataSource.filter = this.metalName.toLowerCase();
   }
   onFocusOutEventForMetalGroup() {
@@ -94,8 +121,11 @@ export class MetalMasterComponent implements OnInit {
     this.filteredOptionsForMetalGroup = this.allMetalTypes.filter(option =>
       option.toLowerCase().includes(formData.metalGroup));
   }
-  onAdd(selecedElements: Element[]) {
+  onCloseDialog(selecedElements: Element[]) {
     this.closePopup();
+    this.onAdd(selecedElements);
+  }
+  onAdd(selecedElements: Element[]) {
     this.finalChem = [];
     this.bathChem = [];
     this.targetChem = [];
@@ -126,6 +156,7 @@ export class MetalMasterComponent implements OnInit {
     this.dataSourceForBathChem = new MatTableDataSource(this.bathChem);
     this.dataSourceForTargetChem = new MatTableDataSource(this.targetChem);
   }
+
   onAddElementClick() {
 
   }
@@ -133,7 +164,6 @@ export class MetalMasterComponent implements OnInit {
     this.addDataToAllElements();
     this.dialogRef = this.dialog.open(this.modalTemplate, this.defaultConfig);
     this.dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
   closePopup() {
@@ -144,8 +174,6 @@ export class MetalMasterComponent implements OnInit {
 
     const formData = this.metalMasterForm.value;
     const isValid = this.validateMinMax();
-    console.log(isValid);
-    
     if (!isValid) {
       return;
     }
@@ -154,14 +182,47 @@ export class MetalMasterComponent implements OnInit {
       window.alert('please add unique name');
       return;
     }
+
+    const metalElementInfo: MetalGradeProperty[] = [];
+    const selectedElements = this.allElements.filter((d: Element) => { return d.isChecked });
+    selectedElements.forEach((r: Element) => {
+      metalElementInfo.push({
+        elementId: r.elementId,
+        min: r.min,
+        max: r.max,
+        bathMin: r.bathMin,
+        bathMax: r.bathMax,
+        targetReading: r.targetReading
+      });
+    });
+    const insertMetalInfo = {
+      metalName: formData.metalName,
+      metalType: formData.metalGroup,
+      gradeStandard: formData.gradeStandard,
+      metalGradeProperty: metalElementInfo
+    } as InsertMetalMaster;
+
+    this.metalMasterService.insertMetalMasterInfo(insertMetalInfo).then(result => {
+      if (result) {
+        this.dialogRef = this.dialog.open(this.modalInsertSuccess, this.defaultConfig);
+        this.dialogRef.afterClosed().subscribe(result => {
+        });
+      }
+    });
+
   }
+
+  closeInsertPopup() {
+    this.dialogRef.close();
+    this.router.navigate([RoutingConstants.metalMaster]);
+  }
+
   async validateMetalName(metalName: string): Promise<boolean> {
     return this.metalMasterService.validateMetalName(metalName).then((r: boolean) => {
-      console.log('res', r);
-      
       return r;
     });
   }
+
   validateMinMax(): boolean {
     const selectedElements = this.allElements.filter(item => item.isChecked === true);
     selectedElements.forEach(r => {
@@ -186,6 +247,7 @@ export class MetalMasterComponent implements OnInit {
     });
     return true;
   }
+
   addDataToAllElements() {
     this.allElements.forEach(r => {
       const find = this.finalChem.find(item => item.element === r.elementName);
