@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { SignUpModel, SignUpService } from './sign-up.service';
 
-import * as sms from '@azure/communication-sms';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Md5 } from 'ts-md5';
 import { Router } from '@angular/router';
