@@ -52,6 +52,10 @@ export class LoginComponent implements OnInit {
       duration: 2000,
     });
   }
+  onSignUp() {
+    this.router.navigate([RoutingConstants.signUp]);
+
+  }
 }
 
 @Component({

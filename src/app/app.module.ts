@@ -22,6 +22,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
 import { MetalMasterComponent } from './components/metal-master/metal-master.component';
 import { ElementMasterComponent } from './components/element-master/element-master.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ElementMasterComponent } from './components/element-master/element-mast
     MetalRegisterComponent,
     DataTableComponent,
     MetalMasterComponent,
-    ElementMasterComponent
+    ElementMasterComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
