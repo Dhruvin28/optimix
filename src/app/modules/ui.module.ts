@@ -9,6 +9,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [],
@@ -22,6 +24,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatMenuModule,
     MatDialogModule,
     MatTableModule,
+    MatIconModule,
     MatAutocompleteModule
   ]
 })

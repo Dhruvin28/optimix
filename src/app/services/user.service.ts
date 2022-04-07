@@ -7,6 +7,6 @@ import { RoutingConstants } from "../constants/routing.constants";
 export class UserService {
 
     isLoginScreen() : boolean {
-        return ['/' + RoutingConstants.login].includes(window.location.pathname);
+        return ['/' + RoutingConstants.login, '/' + RoutingConstants.signUp].includes(window.location.pathname);
     }
 }
